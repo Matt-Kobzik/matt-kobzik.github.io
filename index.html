@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matt Kobzik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #faf8f4;
+      --warm-white: #f5f1eb;
+      --ink: #1a1814;
+      --ink-light: #4a4640;
+      --ink-muted: #9a9490;
+      --accent: #c85a2a;
+      --accent-light: #f0e8e0;
+      --border: #e4ddd4;
+      --card: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--ink-light);
+      max-width: 520px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .header-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .header-links a:hover {
+      color: var(--accent);
+    }
+
+    .header-links .divider {
+      color: var(--border);
+      font-size: 0.9rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 248, 244, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 1rem 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul li a:hover {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── EXPERIENCE ── */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 2rem;
+    }
+
+    .exp-meta {
+      padding-top: 0.15rem;
+    }
+
+    .exp-date {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .exp-company {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-top: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .exp-desc {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    .exp-wins {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .exp-win {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .exp-win::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem 2.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(26,24,20,0.08);
+      transform: translateY(-2px);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-subtitle {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 2px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── CONTACT ── */
+    .contact-text {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      margin-bottom: 1.75rem;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+    }
+
+    .contact-link-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      width: 72px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.35s; }
+    .fade-in:nth-child(4) { animation-delay: 0.5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .experience-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .exp-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+      }
+
+      nav ul li a {
+        padding: 1rem 0.75rem;
+        font-size: 0.7rem;
+      }
+
+      .project-stats {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <p class="eyebrow fade-in">Burlington, VT · Open to Remote</p>
+        <h1 class="fade-in">Matt<br>Kobzik</h1>
+        <p class="tagline fade-in">Customer Success Leader · Building at the Intersection of Data and Customer Outcomes</p>
+        <div class="header-links fade-in">
+          <a href="https://linkedin.com/in/mattkobzik" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <span class="divider">·</span>
+          <a href="https://github.com/Matt-Kobzik" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <span class="divider">·</span>
+          <a href="mailto:mattkobzik@gmail.com">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <div class="about-text">
+        <p>I'm a customer success leader with <strong>8+ years in enterprise SaaS</strong>, specializing in the space where data, analytics, and customer outcomes intersect. I've spent my career helping companies translate complex platforms into measurable business results — building trusted relationships with technical and executive stakeholders along the way.</p>
+        <p>Most recently at <strong>Onit</strong>, I led a team of five delivering analytics services to enterprise customers, advising on API integrations and data warehouse connectivity, and translating product usage into renewal and expansion strategy. Before that, I owned a book of 10–12 enterprise accounts and drove $1M+ in renewals.</p>
+        <p>I'm drawn to companies building at the frontier of data tooling, developer infrastructure, and open source — where the product is genuinely technical and the CSM role requires depth, not just relationship management. I'm also deeply committed to climate tech and mission-driven work.</p>
+        <p>Currently exploring senior <strong>CSM, TAM, and Product Expert</strong> roles at SaaS companies where data and customer outcomes are tightly connected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <div class="experience-list">
+
+        <div class="experience-item">
+          <div class="exp-meta">
+            <div class="exp-date">2024 – 2026</div>
+            <div class="exp-company">Onit</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Manager, Reporting & Analytics Services</div>
+            <div class="exp-desc">Led a five-person team delivering analytics services to enterprise SaaS customers. Owned executive business reviews, data-to-outcome storytelling, and OData/API integration advisory.</div>
+            <div class="exp-wins">
+              <div class="exp-win">Built and scaled a Tableau-based analytics platform using ML models</div>
+              <div class="exp-win">Translated usage data into measurable KPI improvements for enterprise accounts</div>
+              <div class="exp-win">Advised customers on API and data warehouse connectivity</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-meta">
+            <div class="exp-date">2021 – 2024</div>
+            <div class="exp-company">Onit</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Customer Success Manager</div>
+            <div class="exp-desc">Managed 10–12 enterprise accounts ($100K–$300K ARR), drove $1M+ in renewals, and partnered with Product and Engineering to launch two analytics offerings.</div>
+            <div class="exp-wins">
+              <div class="exp-win">Surfaced ~$2M in cost savings via advanced data analysis for a key client</div>
+              <div class="exp-win">Drove 12+ renewals totaling 25% of total brand revenue</div>
+              <div class="exp-win">Q2 2023 Managed Services MVP</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-meta">
+            <div class="exp-date">2017 – 2021</div>
+            <div class="exp-company">Newell Brands</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Product Manager & Account Manager</div>
+            <div class="exp-desc">Owned two internal analytics platforms as technical SME, led a BI platform implementation, and managed eCommerce accounts for First Alert and Yankee Candle.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <div class="project-card">
+        <div class="project-subtitle">Job Search Infrastructure</div>
+        <div class="project-name">Job Scraper</div>
+        <div class="project-desc">
+          Built a custom Python job scraper during my active job search instead of manually checking boards every day. It hits Greenhouse, Lever, and Ashby ATS APIs across 80+ target companies, filters by role type and location, and scores each match 1–5 using the Anthropic API — writing results to a structured Notion database daily.
+        </div>
+        <div class="project-stats">
+          <div class="stat">
+            <span class="stat-value">80+</span>
+            <span class="stat-label">Target Companies</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">5</span>
+            <span class="stat-label">Job Board Sources</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">~$2</span>
+            <span class="stat-label">Monthly Cost</span>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Anthropic API</span>
+          <span class="tag">Notion API</span>
+          <span class="tag">Greenhouse</span>
+          <span class="tag">Lever</span>
+          <span class="tag">Ashby</span>
+        </div>
+        <a class="project-link" href="https://github.com/Matt-Kobzik/job-scraper" target="_blank">
+          View on GitHub
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <p class="contact-text">I'm actively exploring senior CSM, TAM, and Product Expert roles at SaaS companies in data tooling, developer infrastructure, and climate tech. Always happy to connect.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:mattkobzik@gmail.com">
+          <span class="contact-link-label">Email</span>
+          mattkobzik@gmail.com
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/mattkobzik" target="_blank">
+          <span class="contact-link-label">LinkedIn</span>
+          linkedin.com/in/mattkobzik
+        </a>
+        <a class="contact-link" href="https://github.com/Matt-Kobzik" target="_blank">
+          <span class="contact-link-label">GitHub</span>
+          github.com/Matt-Kobzik
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Matt Kobzik · Burlington, VT · 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
