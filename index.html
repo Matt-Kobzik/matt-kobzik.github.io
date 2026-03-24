@@ -60,7 +60,7 @@
 
     /* ── HEADER ── */
     header {
-      padding: 5rem 0 4rem;
+      padding: 5rem 0 2rem;
       border-bottom: 1px solid var(--border);
     }
 
@@ -123,6 +123,22 @@
       font-size: 0.9rem;
     }
 
+    .header-name-row {
+  display: flex;
+  flex-direction: row ;
+  align-items: center;
+  gap: 5rem;
+}
+
+  .profile-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 60%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+  flex-shrink: 0;
+}
+
     /* ── NAV ── */
     nav {
       position: sticky;
@@ -160,7 +176,7 @@
 
     /* ── SECTIONS ── */
     section {
-      padding: 4.5rem 0;
+      padding: 2.5rem 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -478,8 +494,11 @@
     <div class="container">
       <div class="header-inner">
         <p class="eyebrow fade-in">Burlington, VT · Open to Remote</p>
-        <h1 class="fade-in">Matt<br>Kobzik</h1>
-        <p class="tagline fade-in">Customer Success Leader · Building at the Intersection of Data and Customer Outcomes</p>
+        <div class="header-name-row">
+          <img src="images/profile_photo_2025.jpeg" alt="Matt Kobzik" class="profile-photo" />
+          <h1 class="fade-in">Matt<br>Kobzik</h1>
+        </div>
+        <p class="tagline fade-in">Customer Success Leader · Data Geek · Dad · Building at the Intersection of Data and Customer Outcomes</p>
         <div class="header-links fade-in">
           <a href="https://linkedin.com/in/matt-kobzik" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -489,6 +508,11 @@
           <a href="https://github.com/Matt-Kobzik" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             GitHub
+          </a>
+          <span class="divider">·</span>
+          <a href="https://public.tableau.com/app/profile/matt.kobzik/vizzes" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3h16c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2zm3 12h2v-6H7v6zm4 0h2v-10h-2v10z"/></svg>
+            Tableau
           </a>
           <span class="divider">·</span>
           <a href="mailto:mattkobzik@gmail.com">
@@ -517,10 +541,10 @@
     <div class="container">
       <p class="section-label">About</p>
       <div class="about-text">
-        <p>I'm a customer success leader with <strong>8+ years in enterprise SaaS</strong>, specializing in the space where data, analytics, and customer outcomes intersect. I've spent my career helping companies translate complex platforms into measurable business results — building trusted relationships with technical and executive stakeholders along the way.</p>
-        <p>Most recently at <strong>Onit</strong>, I led a team of five delivering analytics services to enterprise customers, advising on API integrations and data warehouse connectivity, and translating product usage into renewal and expansion strategy. Before that, I owned a book of 10–12 enterprise accounts and drove $1M+ in renewals.</p>
+        <p>I'm a customer success leader with <strong>5+ years in enterprise SaaS</strong>, specializing in the space where data, analytics, and customer outcomes intersect. I've spent the last few years of my career helping customers navigate complex platforms and concepts, turning them into measurable business results and building trusted relationships with technical and executive stakeholders along the way.</p>
+        <p>Most recently at <strong>Onit</strong>, a legal technology company, I led a team of five people focused on delivering analytics services to enterprise customers, advising on API integrations and data warehouse connectivity. This role strengthened my technical acumen and deepened my experience working with demanding customers. Before being promoted into Professional Services, I owned a book of 10–12 enterprise accounts and drove $1M+ in renewals.</p>
         <p>I'm drawn to companies building at the frontier of data tooling, developer infrastructure, and open source — where the product is genuinely technical and the CSM role requires depth, not just relationship management. I'm also deeply committed to climate tech and mission-driven work.</p>
-        <p>Currently exploring senior <strong>CSM, TAM, and Product Expert</strong> roles at SaaS companies where data and customer outcomes are tightly connected.</p>
+        <p>Currently I'm exploring <strong>Customer Success Manager, Technical Account Manager, and Product Expert</strong> roles at SaaS companies where data and customer outcomes are tightly connected.</p>
       </div>
     </div>
   </section>
@@ -538,11 +562,11 @@
           </div>
           <div class="exp-body">
             <div class="exp-title">Manager, Reporting & Analytics Services</div>
-            <div class="exp-desc">Led a five-person team delivering analytics services to enterprise SaaS customers. Owned executive business reviews, data-to-outcome storytelling, and OData/API integration advisory.</div>
+            <div class="exp-desc">Led a five-person team delivering analytics services to enterprise SaaS customers. Owned end-to-end reporting implementations, data-to-outcome storytelling, and OData/API integration advisory.</div>
             <div class="exp-wins">
-              <div class="exp-win">Built and scaled a Tableau-based analytics platform using ML models</div>
-              <div class="exp-win">Translated usage data into measurable KPI improvements for enterprise accounts</div>
-              <div class="exp-win">Advised customers on API and data warehouse connectivity</div>
+              <div class="exp-win">Acted as both technical expert and strategic advisor for clients looking to leverage data for business outcomes</div>
+              <div class="exp-win">Advised customers on OData API and data warehouse connectivity</div>
+              <div class="exp-win">Developed implementation framework for OData offering to enable faster delivery</div>
             </div>
           </div>
         </div>
@@ -554,7 +578,7 @@
           </div>
           <div class="exp-body">
             <div class="exp-title">Customer Success Manager</div>
-            <div class="exp-desc">Managed 10–12 enterprise accounts ($100K–$300K ARR), drove $1M+ in renewals, and partnered with Product and Engineering to launch two analytics offerings.</div>
+            <div class="exp-desc">Managed 10–12 mid-market + enterprise accounts ($50K–$150K ARR), drove $1M+ in renewals, and partnered with Product and Engineering to launch two analytics offerings.</div>
             <div class="exp-wins">
               <div class="exp-win">Surfaced ~$2M in cost savings via advanced data analysis for a key client</div>
               <div class="exp-win">Drove 12+ renewals totaling 25% of total brand revenue</div>
