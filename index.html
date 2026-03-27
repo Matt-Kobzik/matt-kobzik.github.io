@@ -10,7 +10,6 @@
   <style>
     :root {
       --cream: #faf8f4;
-      --warm-white: #f5f1eb;
       --ink: #1a1814;
       --ink-light: #4a4640;
       --ink-muted: #9a9490;
@@ -20,15 +19,8 @@
       --card: #ffffff;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--cream);
@@ -39,7 +31,6 @@
       min-height: 100vh;
     }
 
-    /* ── NOISE TEXTURE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -49,18 +40,16 @@
       z-index: 0;
     }
 
-    /* ── LAYOUT ── */
     .container {
       max-width: 780px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1rem;
       position: relative;
       z-index: 1;
     }
 
-    /* ── HEADER ── */
     header {
-      padding: 5rem 0 2rem;
+      padding: 5rem 0 1.5rem;
       border-bottom: 1px solid var(--border);
     }
 
@@ -68,6 +57,23 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+    }
+
+    /* Name left, photo right */
+    .header-name-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 7rem;
+    }
+
+    .profile-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      flex-shrink: 0;
     }
 
     .eyebrow {
@@ -97,9 +103,10 @@
 
     .header-links {
       display: flex;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
       align-items: center;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
     }
 
     .header-links a {
@@ -114,32 +121,13 @@
       transition: color 0.2s;
     }
 
-    .header-links a:hover {
-      color: var(--accent);
-    }
+    .header-links a:hover { color: var(--accent); }
 
     .header-links .divider {
       color: var(--border);
       font-size: 0.9rem;
     }
 
-    .header-name-row {
-  display: flex;
-  flex-direction: row ;
-  align-items: center;
-  gap: 5rem;
-}
-
-  .profile-photo {
-  width: 170px;
-  height: 170px;
-  border-radius: 60%;
-  object-fit: cover;
-  border: 3px solid var(--border);
-  flex-shrink: 0;
-}
-
-    /* ── NAV ── */
     nav {
       position: sticky;
       top: 0;
@@ -147,18 +135,17 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
-      padding: 0;
     }
 
-    nav ul {
-      display: flex;
+    nav ul { 
+      display: flex; 
       list-style: none;
-      gap: 0;
+      margin-left: -1rem;
     }
 
     nav ul li a {
       display: block;
-      padding: 1rem 1.25rem;
+      padding: 1rem 0.75rem;
       font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -174,18 +161,15 @@
       border-bottom-color: var(--accent);
     }
 
-    /* ── SECTIONS ── */
     section {
       padding: 2.5rem 0;
       border-bottom: 1px solid var(--border);
     }
 
-    section:last-child {
-      border-bottom: none;
-    }
+    section:last-child { border-bottom: none; }
 
     .section-label {
-      font-size: 0.68rem;
+      font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -193,24 +177,16 @@
       margin-bottom: 2rem;
     }
 
-    /* ── ABOUT ── */
     .about-text p {
-      font-size: 1.05rem;
+      font-size: .9rem;
       color: var(--ink-light);
       line-height: 1.75;
       margin-bottom: 1.25rem;
     }
 
-    .about-text p:last-child {
-      margin-bottom: 0;
-    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--ink); font-weight: 500; }
 
-    .about-text strong {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    /* ── EXPERIENCE ── */
     .experience-list {
       display: flex;
       flex-direction: column;
@@ -219,13 +195,11 @@
 
     .experience-item {
       display: grid;
-      grid-template-columns: 1fr 3fr;
+      grid-template-columns: 120px 1fr;
       gap: 2rem;
     }
 
-    .exp-meta {
-      padding-top: 0.15rem;
-    }
+    .exp-meta { padding-top: 0.15rem; }
 
     .exp-date {
       font-size: 0.75rem;
@@ -279,7 +253,6 @@
       font-size: 0.75rem;
     }
 
-    /* ── PROJECT CARD ── */
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -288,6 +261,7 @@
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.25s, transform 0.25s;
+      margin-bottom: 1.8rem;
     }
 
     .project-card:hover {
@@ -298,9 +272,7 @@
     .project-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: var(--accent);
     }
@@ -336,11 +308,7 @@
       flex-wrap: wrap;
     }
 
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
+    .stat { display: flex; flex-direction: column; gap: 0.1rem; }
 
     .stat-value {
       font-family: 'Cormorant Garamond', serif;
@@ -392,8 +360,53 @@
       color: var(--accent);
       border-color: var(--accent);
     }
+    .testimonial-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 250px;
+}
+    .testimonial-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      flex-shrink: 0;
+    }
 
-    /* ── CONTACT ── */
+    .testimonial-content {
+      flex: 1;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+
+    .testimonial-text strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .testimonial-author {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .testimonial-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
     .contact-text {
       font-size: 1.05rem;
       color: var(--ink-light);
@@ -419,9 +432,7 @@
       transition: color 0.2s;
     }
 
-    .contact-link:hover {
-      color: var(--accent);
-    }
+    .contact-link:hover { color: var(--accent); }
 
     .contact-link-label {
       font-size: 0.65rem;
@@ -432,11 +443,7 @@
       width: 72px;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 2.5rem 0;
-      text-align: center;
-    }
+    footer { padding: 2.5rem 0; text-align: center; }
 
     footer p {
       font-size: 0.75rem;
@@ -444,62 +451,47 @@
       letter-spacing: 0.05em;
     }
 
-    /* ── ANIMATIONS ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 0.6s ease forwards;
-    }
+    /* Animations — target direct children of header-inner */
+    .header-inner > *:nth-child(1) { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease 0.1s forwards; }
+    .header-inner > *:nth-child(2) { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease 0.2s forwards; }
+    .header-inner > *:nth-child(3) { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease 0.35s forwards; }
+    .header-inner > *:nth-child(4) { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease 0.5s forwards; }
 
     @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-in:nth-child(1) { animation-delay: 0.1s; }
-    .fade-in:nth-child(2) { animation-delay: 0.2s; }
-    .fade-in:nth-child(3) { animation-delay: 0.35s; }
-    .fade-in:nth-child(4) { animation-delay: 0.5s; }
-
-    /* ── RESPONSIVE ── */
+    /* Mobile */
     @media (max-width: 600px) {
-      .experience-item {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-      }
-
-      .exp-meta {
-        display: flex;
-        gap: 1rem;
-        align-items: baseline;
-      }
-
-      nav ul li a {
-        padding: 1rem 0.75rem;
-        font-size: 0.7rem;
-      }
-
-      .project-stats {
-        gap: 1rem;
-      }
+      .container { padding: 0 1.25rem; }
+      header { padding: 3rem 0 1rem; }
+      .header-name-row { gap: .25rem; }
+      .profile-photo { width: 100px; height: 100px; }
+      h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+      .tagline { font-size: 0.92rem; }
+      .header-links { gap: 0.5rem 0.75rem; }
+      .header-links .divider { display: none; }
+      nav ul li a { padding: 0.875rem 0.75rem; font-size: 0.7rem; }
+      section { padding: 2.5rem 0; }
+      .experience-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .exp-meta { display: flex; gap: 0.75rem; align-items: baseline; }
+      .project-card { padding: 1.5rem; }
+      .project-stats { gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="header-inner">
-        <p class="eyebrow fade-in">Burlington, VT · Open to Remote</p>
+        <p class="eyebrow">Burlington, VT · Open to Remote</p>
         <div class="header-name-row">
+          <h1>Matt<br>Kobzik</h1>
           <img src="images/profile_photo_2025.jpeg" alt="Matt Kobzik" class="profile-photo" />
-          <h1 class="fade-in">Matt<br>Kobzik</h1>
         </div>
-        <p class="tagline fade-in">Customer Success Leader · Data Geek · Dad · Building at the Intersection of Data and Customer Outcomes</p>
-        <div class="header-links fade-in">
+        <p class="tagline">Customer Success Leader · Data Geek · Dad · Building at the Intersection of Data and Customer Outcomes</p>
+        <div class="header-links">
           <a href="https://linkedin.com/in/matt-kobzik" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             LinkedIn
@@ -524,32 +516,30 @@
     </div>
   </header>
 
-  <!-- NAV -->
   <nav>
     <div class="container">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <p class="section-label">About</p>
       <div class="about-text">
-        <p>I'm a customer success leader with <strong>5+ years in enterprise SaaS</strong>, specializing in the space where data, analytics, and customer outcomes intersect. I've spent the last few years of my career helping customers navigate complex platforms and concepts, turning them into measurable business results and building trusted relationships with technical and executive stakeholders along the way.</p>
-        <p>Most recently at <strong>Onit</strong>, a legal technology company, I led a team of five people focused on delivering analytics services to enterprise customers, advising on API integrations and data warehouse connectivity. This role strengthened my technical acumen and deepened my experience working with demanding customers. Before being promoted into Professional Services, I owned a book of 10–12 enterprise accounts and drove $1M+ in renewals.</p>
+        <p>I'm a customer success leader with <strong>5+ years in enterprise SaaS, specializing in the space where data, analytics, and customer outcomes intersect</strong>. I've spent the last few years of my career helping customers navigate complex platforms and concepts, turning them into measurable business results and building trusted relationships with technical and executive stakeholders along the way.</p>
+        <p>Most recently at Onit, a legal technology company, <br><strong>I led a team of five people focused on delivering analytics services to enterprise customers, advising on Onit's OData API integration, facilitating requirements gathering and reporting development, and ensuring Onit customers received top-tier service.</strong> This role strengthened my technical acumen and deepened my experience working with demanding customers.<br><br>  Before being promoted into Professional Services, I worked in Customer Success, owning a book of enterprise accounts and driving $1M+ in renewals.</p>
         <p>I'm drawn to companies building at the frontier of data tooling, developer infrastructure, and open source — where the product is genuinely technical and the CSM role requires depth, not just relationship management. I'm also deeply committed to climate tech and mission-driven work.</p>
         <p>Currently I'm exploring <strong>Customer Success Manager, Technical Account Manager, and Product Expert</strong> roles at SaaS companies where data and customer outcomes are tightly connected.</p>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
       <p class="section-label">Experience</p>
@@ -564,9 +554,9 @@
             <div class="exp-title">Manager, Reporting & Analytics Services</div>
             <div class="exp-desc">Led a five-person team delivering analytics services to enterprise SaaS customers. Owned end-to-end reporting implementations, data-to-outcome storytelling, and OData/API integration advisory.</div>
             <div class="exp-wins">
-              <div class="exp-win">Acted as both technical expert and strategic advisor for clients looking to leverage data for business outcomes</div>
-              <div class="exp-win">Advised customers on OData API and data warehouse connectivity</div>
-              <div class="exp-win">Developed implementation framework for OData offering to enable faster delivery</div>
+              <div class="exp-win">Acted as both technical expert and strategic advisor for clients looking to leverage their legal data to drive business outcomes</div>
+              <div class="exp-win">Advised customers on OData API architecture, faciliated  implementation and troubleshooted technical issues</div>
+              <div class="exp-win">Developed and socialized implementation framework for OData offering to enable faster delivery and time-to-value</div>
             </div>
           </div>
         </div>
@@ -578,11 +568,11 @@
           </div>
           <div class="exp-body">
             <div class="exp-title">Customer Success Manager</div>
-            <div class="exp-desc">Managed 10–12 mid-market + enterprise accounts ($50K–$150K ARR), drove $1M+ in renewals, and partnered with Product and Engineering to launch two analytics offerings.</div>
+            <div class="exp-desc">Managed portfolio of mid-market + enterprise accounts ($50K–$150K ARR), driving $1M+ in renewals, and partnering with Product and Engineering to launch two analytics offerings.</div>
             <div class="exp-wins">
-              <div class="exp-win">Surfaced ~$2M in cost savings via advanced data analysis for a key client</div>
-              <div class="exp-win">Drove 12+ renewals totaling 25% of total brand revenue</div>
-              <div class="exp-win">Q2 2023 Managed Services MVP</div>
+              <div class="exp-win">Surfaced ~$2M in cost savings via advanced data analysis for Fortune 500 client</div>
+              <div class="exp-win">Drove a dozen renewals, totaling 25% of total brand revenue </div>
+              <div class="exp-win">Supported  development of CS-related framework and documentation, including Joint Success Plan, Sales to Client Success Handoff, and Value Meeting templates </div>
             </div>
           </div>
         </div>
@@ -594,7 +584,7 @@
           </div>
           <div class="exp-body">
             <div class="exp-title">Product Manager & Account Manager</div>
-            <div class="exp-desc">Owned two internal analytics platforms as technical SME, led a BI platform implementation, and managed eCommerce accounts for First Alert and Yankee Candle.</div>
+            <div class="exp-desc">Owned two internal analytics platforms as technical SME, led a SaaS platform implementation for digital shelf analytics, and managed eCommerce accounts for key brands like First Alert and Yankee Candle.</div>
           </div>
         </div>
 
@@ -602,7 +592,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <p class="section-label">Projects</p>
@@ -610,7 +599,8 @@
         <div class="project-subtitle">Job Search Infrastructure</div>
         <div class="project-name">Job Scraper</div>
         <div class="project-desc">
-          Built a custom Python job scraper during my active job search instead of manually checking boards every day. It hits Greenhouse, Lever, and Ashby ATS APIs across 80+ target companies, filters by role type and location, and scores each match 1–5 using the Anthropic API — writing results to a structured Notion database daily.
+          Built a custom Python job scraper during my active job search instead of manually checking boards every day. <br><br> The Python script fetches job listings using Greenhouse, Lever, and Ashby ATS APIs across 80+ target companies; it filters by role type and location, and scores each match 1–5 using the Anthropic API — writing results to a structured Notion database daily.
+          <br><br>The scraper is my first foray into AI-assisted engineering, leveraging my domain expertise in recruiting and job search with my technical skills to build a tool that saves me hours of manual work each week and ensures I never miss an opportunity at a target company.
         </div>
         <div class="project-stats">
           <div class="stat">
@@ -630,19 +620,80 @@
           <span class="tag">Python</span>
           <span class="tag">Anthropic API</span>
           <span class="tag">Notion API</span>
-          <span class="tag">Greenhouse</span>
-          <span class="tag">Lever</span>
-          <span class="tag">Ashby</span>
+          <span class="tag">AI-Assisted Engineering</span>
+        
         </div>
         <a class="project-link" href="https://github.com/Matt-Kobzik/job-scraper" target="_blank">
           View on GitHub
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
       </div>
+
+      <div class="project-card">
+        <div class="project-subtitle">Data Visualization</div>
+        <div class="project-name">Housing vs. Income Analysis</div>
+        <div class="project-desc">
+         Interactive Tableau dashboard analyzing the relationship between housing costs and income levels across U.S. cities using data from the U.S. Census Bureau and Zillow. <br><br>The dashboard explores the cost of housing in Burlington relative to other "like" cities in the United States. It features multiple visualizations, including scatter plots, heat maps, and trend lines, allowing users to explore patterns and insights at both national and city levels.
+        </div>
+        <div class="project-stats">
+          <div class="stat">
+            <span class="stat-value">1</span>
+            <span class="stat-label">Public Dashboard</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">5</span>
+            <span class="stat-label">Visual Analyses</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">10+</span>
+            <span class="stat-label">Calculated Fields</span>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Tableau</span>
+          <span class="tag">Data Viz</span>
+          <span class="tag">ETL</span>
+          <span class="tag">Organic Storytelling</span>
+        </div>
+        <a class="project-link" href="https://public.tableau.com/app/profile/matt.kobzik/viz/BurlingtonDataAnalysis/CoverPage" target="_blank">
+          View on Tableau Public
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <section id="testimonials">
+    <div class="container">
+      <p class="section-label">Testimonials</p>
+      <div class="testimonial-grid">
+        <article class="testimonial-card">
+            <img class="testimonial-photo" src="images/thomas_franche_nolan.jpeg"/>          
+            <div class="testimonial-content">
+            <p class="testimonial-text">“I had the pleasure of working with Matt during our time together at Onit. <strong>Matt consistently stood out for his deep curiosity and genuine desire to understand customers’ needs.</strong> He took the time to dive into each customer’s unique environment and always emerged with meaningful insights that helped them get more value out of our platform.<br>
+            <br> One of Matt’s strongest talents is his analytical ability. He has a gift for examining complex data within customer instances, identifying patterns and opportunities, and translating those findings into clear, actionable guidance. <strong>Customers appreciated how he distilled technical insights into a digestible format - making it easy for them to understand, prioritize, and capitalize on what mattered most.</strong><br>
+            <br>Beyond his technical strengths, Matt is simply great to work with. He is kind, collaborative, and consistently willing to help wherever needed. His positive attitude and reliability made him a trusted partner both to customers and to colleagues.”</p>
+          <p class="testimonial-author">— Thomas Franche-Nolan (Account Manager, Onit)</p>
+            </div>
+        </article>
+        <article class="testimonial-card">
+          <img class="testimonial-photo" src="images/aaron_burg.jpeg"/>          
+          <div class="testimonial-content">
+            <p class="testimonial-text">“I worked with Matt for several years during his tenure at Onit, where he served as our primary point of contact for the solution. He quickly became an invaluable partner, deeply engaged in understanding our platform and proactive about finding ways to maximize the value Onit got from it.<br>
+            <br>Beyond the day-to-day work, Matt was generous with his time and expertise, participating in joint webinars and contributing to thought leadership articles. It was always a pleasure working with him and his team, and I have no doubt he would be a strong asset to any organization. <strong>He brings a unique combination of strong organizational skills, technical depth, and genuine collaboration</strong>”<br></p>
+          <p class="testimonial-author">— Aaron Burg (Principal Sales Engineer, Progress)</p>
+          </article>
+        <article class="testimonial-card">
+              <img class="testimonial-photo" src="images/dave_burke.jpeg"/>          
+              <div class="testimonial-content">
+                <p class="testimonial-text">“Matt brings the rare combination of technical knowledge, the eagerness, ambition, and know-how to learn, and most importantly an ability to connect with colleagues and customers on a personal level.<br><br> In the age of AI, automation, and increased remote work, having all of these attributes will be in big demand. The companies that learn to properly
+value this will be ahead of the game and <strong>Matt is going to be a key contributor wherever he goes."</strong></p>
+              <p class="testimonial-author">— Dave Burke (Principal Solutions Architect, Onit)</p>
+        </article>  
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="container">
       <p class="section-label">Contact</p>
@@ -654,7 +705,7 @@
         </a>
         <a class="contact-link" href="https://linkedin.com/in/matt-kobzik" target="_blank">
           <span class="contact-link-label">LinkedIn</span>
-          linkedin.com/in/mattkobzik
+          linkedin.com/in/matt-kobzik
         </a>
         <a class="contact-link" href="https://github.com/Matt-Kobzik" target="_blank">
           <span class="contact-link-label">GitHub</span>
@@ -664,7 +715,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p>Matt Kobzik · Burlington, VT · 2026</p>
